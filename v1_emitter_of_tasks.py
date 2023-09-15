@@ -1,4 +1,7 @@
 """
+Name: Kristen Finley
+Date: 9/14/2023
+Edits: Converted from print statements to logging using util_logger.py
 
 Creates and sends a task message to the queue each execution.
 This process runs and finishes. 
@@ -14,6 +17,15 @@ Work Queues - one task producer / many workers sharing work.
 import pika
 import sys
 import webbrowser
+
+# Configure logging
+from util_logger import setup_logger
+
+logger, logname = setup_logger(__file__)
+
+# ---------------------------------------------------------------------------
+# Define program functions (bits of reusable code)
+# ---------------------------------------------------------------------------
 
 def offer_rabbitmq_admin_site():
     """Offer to open the RabbitMQ Admin website"""
@@ -36,7 +48,7 @@ channel = connection.channel()
 # messages will not be deleted until the consumer acknowledges
 channel.queue_declare(queue="task_queue", durable=True)
 # create a message by joining the command line arguments
-message = " ".join(sys.argv[1:]) or "First task..."
+message = " ".join(sys.argv[1:]) or "First task......."
 # publish the message to the queue
 channel.basic_publish(
     exchange="",
@@ -44,7 +56,8 @@ channel.basic_publish(
     body=message,
     properties=pika.BasicProperties(delivery_mode=pika.spec.PERSISTENT_DELIVERY_MODE),
 )
-# tell the user the message was sent
-print(f" [x] Sent {message}")
+# log that the message was sent for the user
+logger.info(f" [x] Sent {message}")
+
 # close the connection to the server
 connection.close()

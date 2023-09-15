@@ -1,10 +1,9 @@
 """
-Name: Kristen Finley
-Date: 9/14/2023
-Edits: Converted from print statements to logging using util_logger.py
-
     This program listens for work messages contiously. 
     Start multiple versions to add more workers.  
+
+    Author: Kristen Finley
+    Date: September 14, 2023
 
 """
 
@@ -12,21 +11,20 @@ import pika
 import sys
 import time
 
-# Import the custom logger setup utility (local file named util_logger.py)
+# Configure logging
 from util_logger import setup_logger
 
-# Setup custom logging
 logger, logname = setup_logger(__file__)
 
 # define a callback function to be called when a message is received
 def callback(ch, method, properties, body):
     """ Define behavior on getting a message."""
     # decode the binary message body to a string
-    logger.info(f" [x] Received {body.decode()}")
+    (f" [x] Received {body.decode()}")
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
     # when done with task, tell the user
-    logger.info(" [x] Done.")
+    logger.info(f" [x] {body.decode()} Done.")
     # acknowledge the message was received and processed 
     # (now it can be deleted from the queue)
     ch.basic_ack(delivery_tag=method.delivery_tag)
@@ -44,11 +42,8 @@ def main(hn: str = "localhost", qn: str = "task_queue"):
 
     # except, if there's an error, do this
     except Exception as e:
-        logger.error()
         logger.error("ERROR: connection to RabbitMQ server failed.")
         logger.error(f"Verify the server is running on host={hn}.")
-        logger.error(f"The error says: {e}")
-        logger.error()
         sys.exit(1)
 
     try:
@@ -77,7 +72,7 @@ def main(hn: str = "localhost", qn: str = "task_queue"):
         channel.basic_consume( queue=qn, on_message_callback=callback)
 
         # print a message to the console for the user
-        logger.info(" [*] Ready for work. To exit press CTRL+C")
+        print(" [*] Ready for work. To exit press CTRL+C")
 
         # start consuming messages via the communication channel
         channel.start_consuming()
@@ -88,10 +83,11 @@ def main(hn: str = "localhost", qn: str = "task_queue"):
         logger.error(f"The error says: {e}")
         sys.exit(1)
     except KeyboardInterrupt:
-        logger.error(" User interrupted continuous listening process.")
+        print()
+        print(" User interrupted continuous listening process.")
         sys.exit(0)
     finally:
-        logger.info("\nClosing connection. Goodbye.\n")
+        print("\nClosing connection. Goodbye.\n")
         connection.close()
 
 
@@ -101,4 +97,4 @@ def main(hn: str = "localhost", qn: str = "task_queue"):
 # If this is the program being run, then execute the code below
 if __name__ == "__main__":
     # call the main function with the information needed
-    main("localhost", "task_queue2")
+    main("localhost", "task_queue3")

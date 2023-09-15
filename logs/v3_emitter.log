@@ -1,0 +1,18 @@
+2023-09-14 17:10:34,081.v3_emitter.INFO ==================================================
+2023-09-14 17:10:34,081.v3_emitter.INFO Today is 2023-09-14 at 05:10 PM
+2023-09-14 17:10:34,081.v3_emitter.INFO Running on: posix Darwin 22.5.0
+2023-09-14 17:10:34,081.v3_emitter.INFO Python version:  3.9.6
+2023-09-14 17:10:34,081.v3_emitter.INFO Python path: /Users/kristenfinley/Documents/streaming-04-multiple-consumers/.venv
+2023-09-14 17:10:34,081.v3_emitter.INFO Working dir: /Users/kristenfinley/Documents/streaming-04-multiple-consumers
+2023-09-14 17:10:34,081.v3_emitter.INFO ==================================================
+2023-09-14 17:10:34,096.v3_emitter.INFO Opened for reading: tasks.csv.
+2023-09-14 17:10:34,097.v3_emitter.INFO  [x] Sent ['First task....']
+2023-09-14 17:10:37,103.v3_emitter.INFO  [x] Sent ['Second task....']
+2023-09-14 17:10:40,108.v3_emitter.INFO  [x] Sent ['Third task....']
+2023-09-14 17:10:43,114.v3_emitter.INFO  [x] Sent ['Forth task...']
+2023-09-14 17:10:46,117.v3_emitter.INFO  [x] Sent ['Fifth task...']
+2023-09-14 17:10:49,124.v3_emitter.INFO  [x] Sent ['Sixth task...']
+2023-09-14 17:10:52,126.v3_emitter.INFO  [x] Sent ['Seventh task....']
+2023-09-14 17:10:55,127.v3_emitter.INFO  [x] Sent ['Eight task......']
+2023-09-14 17:10:58,135.v3_emitter.INFO  [x] Sent ['Ninth task.......']
+2023-09-14 17:11:01,138.v3_emitter.INFO  [x] Sent ['Tenth task..']

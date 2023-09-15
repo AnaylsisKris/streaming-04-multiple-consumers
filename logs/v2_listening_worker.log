@@ -1,0 +1,12 @@
+2023-09-14 13:44:36,258.v2_listening_worker.INFO ==================================================
+2023-09-14 13:44:36,258.v2_listening_worker.INFO Today is 2023-09-14 at 01:44 PM
+2023-09-14 13:44:36,258.v2_listening_worker.INFO Running on: posix Darwin 22.5.0
+2023-09-14 13:44:36,258.v2_listening_worker.INFO Python version:  3.9.6
+2023-09-14 13:44:36,258.v2_listening_worker.INFO Python path: /Users/kristenfinley/Documents/streaming-04-multiple-consumers/.venv
+2023-09-14 13:44:36,258.v2_listening_worker.INFO Working dir: /Users/kristenfinley/Documents/streaming-04-multiple-consumers
+2023-09-14 13:44:36,258.v2_listening_worker.INFO ==================================================
+2023-09-14 13:44:36,330.v2_listening_worker.INFO  [*] Ready for work. To exit press CTRL+C
+2023-09-14 13:45:00,829.v2_listening_worker.ERROR  User interrupted continuous listening process.
+2023-09-14 13:45:00,829.v2_listening_worker.INFO 
+Closing connection. Goodbye.
+

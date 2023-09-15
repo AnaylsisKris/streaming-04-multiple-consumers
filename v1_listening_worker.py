@@ -1,4 +1,7 @@
 """
+Name: Kristen Finley
+Date: 9/14/2023
+Edits: Converted from print statements to logging using util_logger.py
 
 Listens for task messages on the queue.
 This process runs continously. 
@@ -25,6 +28,11 @@ import sys
 import os
 import time
 
+# Import the custom logger setup utility (local file named util_logger.py)
+from util_logger import setup_logger
+
+# Setup custom logging
+logger, logname = setup_logger(__file__)
 
 def listen_for_tasks():
     """ Continuously listen for task messages on a named queue."""
@@ -39,11 +47,11 @@ def listen_for_tasks():
         """ Define behavior on getting a message."""
 
         # decode the binary message body to a string
-        print(f" [x] Received {body.decode()}")
+        logger.info(f" [x] Received {body.decode()}")
         # simulate work by sleeping for the number of dots in the message
         time.sleep(body.count(b"."))
         # when done with task, tell the user
-        print(" [x] Done")
+        logger.info(" [x] Done")
         # acknowledge the message was received and processed 
         # (now it can be deleted from the queue)
         ch.basic_ack(delivery_tag=method.delivery_tag)
@@ -53,7 +61,7 @@ def listen_for_tasks():
     # and help ensure messages are processed in order
     # messages will not be deleted until the consumer acknowledges    
     ch.queue_declare(queue="task_queue", durable=True)
-    print(" [*] Ready for work. To exit press CTRL+C")
+    logger.info(" [*] Ready for work. To exit press CTRL+C")
 
     # The QoS level controls the # of messages 
     # that can be in-flight (unacknowledged by the consumer) 
@@ -79,7 +87,7 @@ if __name__ == "__main__":
         listen_for_tasks()
 
     except KeyboardInterrupt:
-        print("Interrupted")
+        logger.info("Interrupted")
         try:
             sys.exit(0)
         except SystemExit:
